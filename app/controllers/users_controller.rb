@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+before_action :set_user,only: [:edit,:destroy,:update,:show]
 
 def index
  @users = User.all
@@ -22,22 +23,22 @@ def create
 end
 
 def destroy
-	@user = User.find(params[:id])
+
 	@user.destroy
 	flash[:nontice] = " User was destroy successfully " 
 	redirect_to users_path
 end
 
 def show
-  @user = User.find(params[:id])
+
 end
 
 def edit
-  @user = User.find(params[:id])
+
 end 
 
 def update
- @user = User.find(params[:id])
+
    if @user.update(user_params)
    	   flash[:nontice] = "User was successfully"
        redirect_to user_path (@user)
@@ -49,6 +50,10 @@ end
 	
 
  private
+   def set_user
+     @user = User.find(params[:id])
+   end
+
    def user_params
    	params.require(:user).permit(:username,:email,:address)
    end
