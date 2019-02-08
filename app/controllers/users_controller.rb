@@ -13,7 +13,7 @@ def create
    # render plain: params[:user].inspect
    @user = User.new(user_params)
    if @user.save
-   	   flash[:nontice] = "User was successfully"
+   	   flash[:nontice] = "User was successfully with user name : " + @user.username
        redirect_to user_path (@user)
    else
    	render 'new'
@@ -23,7 +23,6 @@ def create
 end
 
 def destroy
-
 	@user.destroy
 	flash[:nontice] = " User was destroy successfully " 
 	redirect_to users_path
