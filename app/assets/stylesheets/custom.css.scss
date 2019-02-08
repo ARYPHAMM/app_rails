@@ -1,4 +1,11 @@
-.bg-light{
- 	background-color: red !important;
- }
+$navbar-default-bg: #6751e2;
 
+@import "bootstrap-sprockets";
+@import "bootstrap";
+.navbar-default {
+    border-color: #8f88b4;
+   
+}
+.navbar-default .navbar-nav > li > a {
+   color:white;
+}
