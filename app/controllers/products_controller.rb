@@ -22,7 +22,7 @@ end
 
 def destroy
 	@product.destroy
-	flash[:danger] = " User was destroy successfully " 
+	flash[:danger] = " Product was destroy successfully " 
 	redirect_to products_path
 end
 
