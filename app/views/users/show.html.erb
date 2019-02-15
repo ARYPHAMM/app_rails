@@ -1,3 +1,23 @@
-<h1>new user</h1>
-<h2> <%= @user.username %></h2>
-<h3> <%= @user.email %></h3>
+<h1>Info</h1>
+<h2 align="center"> <%= @user.username %></h2>
+<div class="well col-xs-8 col-xs-offset-2">
+
+<h4 class="center email"><strong>Email</strong></h4>
+
+<hr>
+<%= simple_format(@user.email) %>
+<div class="user-actions">
+
+<%= link_to "Edit this user", edit_user_path(@user), class: "btn btn-xs btn-primary" %>
+
+<%= link_to "Delete this user", users_path(@user), method: :delete,
+
+data: { confirm: "Are you sure you want to delete the user?"},
+
+class: "btn btn-xs btn-danger" %>
+
+<%= link_to "View all user", users_path, class: "btn btn-xs btn-success" %>
+
+</div>
+
+</div>

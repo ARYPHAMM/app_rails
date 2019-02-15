@@ -1,0 +1,23 @@
+<% if @user.errors.any? %>
+<%= @user.errors.any? %><!--  Kiem tra truoc khi insert vao db , ket qua tra ve true neu co loi -->
+<div class="row">
+	<div class="col-xs-8 col-xs-offset-2">
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				<h2 class="panel-title">
+				<%= pluralize(obj.errors.count, "error") %> <!-- In ra ma nguoi dung gap phai -->
+				prohibited this User from being saved: </h2>
+				<div class="panel-body">
+					<ul>
+						<% @user.errors.full_messages.each do |msg| %> <!-- Duyet qua cac loi trong qua trinh tao user gap phai -->
+						<li>
+							<%= msg %>
+						</li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<% end %>
