@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
 before_action :set_product,only: [:edit,:destroy,:update,:show]
 
 def index
- @products = Product.all
+ @products = Product.paginate(page:params[:page],per_page: 3)
 end
 
 def new
@@ -10,8 +10,19 @@ def new
 end
 
 def create
+  # debugger
+
    @product = Product.new(product_params)
-   @product.user = User.first
+   if  logged_in? && current_user
+       @product.user = User.find(session[:user_id])
+   else
+    flash[:danger] = "system requiment login"
+     render 'new'
+     return
+   end
+
+  
+   @product.dayinput = Time.now
    if @product.save
    	   flash[:success] = "Product was successfully with product name : " + @product.name #flash la mot mang hash (mang lien ket)
        redirect_to product_path (@product)
@@ -22,7 +33,7 @@ end
 
 def destroy
 	@product.destroy
-	flash[:danger] = " User was destroy successfully " 
+	flash[:danger] = " Product was destroy successfully " 
 	redirect_to products_path
 end
 

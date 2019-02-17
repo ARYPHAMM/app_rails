@@ -1,24 +1,9 @@
 <%= link_to "Create product",new_product_path %>
 <h1 align="center">Listing all Products</h1>
-<% @products.each do |p| %>
-<div class="row">
-	<div class="col-xs-8 col-xs-offset-2">
-		<div class="well well-lg">
-			<div class="user-title">
-				<%= link_to p.name, products_path(p) %>
-			</div>
-			<div class="user-body">
-				<%= p.user.username %>
-				<%= truncate(p.decsription, length: 15) %>
-				<%= p.dayinput%>
-			</div>
-			<div class="user-actions">
-				<%= link_to "Edit this user", edit_product_path(p), class: "btn btn-xs btn-primary" %>
-				<%= link_to "Delete this user", product_path(p), method: :delete,
-				data: { confirm: "Are you sure you want to delete the user?"},
-				class: "btn btn-xs btn-danger" %>
-			</div>
-		</div>
-	</div>
+<div align="center">
+	<%= will_paginate %>
 </div>
-<% end %>
+<%= render 'product',obj:@products %>
+<div align="center">
+	<%= will_paginate %>
+</div>

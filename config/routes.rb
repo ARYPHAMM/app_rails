@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   get 'contact' ,to: 'welcome#contact'
   resources :users
   resources :products
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 end
