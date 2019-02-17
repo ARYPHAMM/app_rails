@@ -1,0 +1,33 @@
+<%= link_to "Create product",new_product_path %>
+<h1 align="center">Listing all Products</h1>
+<% obj.each do |p| %>
+<div class="row">
+	<div class="col-xs-8 col-xs-offset-2">
+		<div class="well well-lg">
+			<div class="user-title">
+				<%= link_to p.name, products_path(p) %>
+			</div>
+			<div class="user-body">
+				<%= truncate(p.decsription, length: 15) %>
+				</small>
+				Create for : <li>Created by:</li>
+				<li><%= link_to gravatar_for(p.user), users_path(p.user) %></li>
+				<li class="article-title">
+					<%= link_to p.user.username, users_path(p.user) %>
+				</li>
+				<%= time_ago_in_words(p.dayinput) %>ago,
+				last updated: <%= time_ago_in_words(p.updated_at)
+				%> ago</small>
+			</div>
+			<% if logged_in? && current_user == p.user %>
+			<div class="user-actions">
+				<%= link_to "Edit this product", edit_product_path(p), class: "btn btn-xs btn-primary" %>
+				<%= link_to "Delete this product", product_path(p), method: :delete,
+				data: { confirm: "Are you sure you want to delete the product?"},
+				class: "btn btn-xs btn-danger" %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+<% end %>

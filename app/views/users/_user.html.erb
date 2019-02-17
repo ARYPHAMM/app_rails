@@ -1,8 +1,4 @@
-<h1>List Users</h1>
 <%= link_to "Create user",new_user_path %>
-<div align="center">
-	<%= will_paginate %>
-</div>
 <h1 align="center">Listing all Users</h1>
 <% @users.each do |user| %>
 <div class="row">
@@ -25,8 +21,4 @@
 		</div>
 	</div>
 </div>
-<li><small><%= pluralize(user.products.count, "product") if user.products %></small></li>
 <% end %>
-<div align="center">
-	<%= will_paginate %>
-</div>

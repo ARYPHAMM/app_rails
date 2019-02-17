@@ -7,6 +7,10 @@
 
 <hr>
 <%= simple_format(@product.decsription) %>
+create for : <li><%= link_to gravatar_for(@product.user), users_path(@product.user) %>
+	<%= link_to @product.user.username, users_path(@product.user) %>
+</li>
+<% if logged_in? && current_user == @product.user %>
 <div class="user-actions">
 
 <%= link_to "Edit this product", edit_product_path(@product), class: "btn btn-xs btn-primary" %>
@@ -20,5 +24,6 @@ class: "btn btn-xs btn-danger" %>
 <%= link_to "View all product", products_path, class: "btn btn-xs btn-success" %>
 
 </div>
+<% end %>
 
 </div>
