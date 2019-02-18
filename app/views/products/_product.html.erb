@@ -19,7 +19,7 @@
 				last updated: <%= time_ago_in_words(p.updated_at)
 				%> ago</small>
 			</div>
-			<% if logged_in? && current_user == p.user %>
+			<% if logged_in? && (current_user == p.user || current_user.admin?) %>
 			<div class="user-actions">
 				<%= link_to "Edit this product", edit_product_path(p), class: "btn btn-xs btn-primary" %>
 				<%= link_to "Delete this product", product_path(p), method: :delete,

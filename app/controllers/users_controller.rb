@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 before_action :set_user,only: [:edit,:destroy,:update]
+before_action :require_same_user ,only: [:edit,:update,:destroy]
+before_action :require_admin,only: [:destroy] # quyen xoa user
 
 def index
  @users = User.paginate(page:params[:page],per_page: 3)
@@ -14,6 +16,7 @@ def create
    # debugger
    @user = User.new(user_params)
    if @user.save
+       session[:user_id] = @user.id
    	   flash[:success] = "User was successfully with user name : " + @user.username #flash la mot mang hash (mang lien ket)
        redirect_to user_path (@user)
    else
@@ -65,6 +68,18 @@ end
    def user_params
    	params.require(:user).permit(:username,:email,:address,:password)
    end
+   
+    def require_same_user
+    if current_user != @user && !current_user.admin?
+      flash[:danger] = "You can only edit your owm account"
+      redirect_to root_path
+    end
+   end
 
+   def require_admin
+    if logger_in? and !current_user.admin?
+      flash[:danger] = "only admin users can perform that action"
+    end
+   end
 
 end

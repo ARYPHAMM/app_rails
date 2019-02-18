@@ -18,9 +18,11 @@
 			</div>
 			<div class="user-actions">
 				<%= link_to "Edit this user", edit_user_path(user), class: "btn btn-xs btn-primary" %>
-				<%= link_to "Delete this user", users_path(user), method: :delete,
+				<% if logged_in? && current_user.admin == true then %>
+				<%= link_to "Delete this user", user_path(user), method: :delete,
 				data: { confirm: "Are you sure you want to delete the user?"},
 				class: "btn btn-xs btn-danger" %>
+				<% end %>
 			</div>
 		</div>
 	</div>

@@ -10,7 +10,7 @@
 create for : <li><%= link_to gravatar_for(@product.user), users_path(@product.user) %>
 	<%= link_to @product.user.username, users_path(@product.user) %>
 </li>
-<% if logged_in? && current_user == @product.user %>
+<% if logged_in? && (current_user == @product.user || current_user.admin?) %>
 <div class="user-actions">
 
 <%= link_to "Edit this product", edit_product_path(@product), class: "btn btn-xs btn-primary" %>

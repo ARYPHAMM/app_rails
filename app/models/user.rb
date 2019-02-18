@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-	 has_many :products
+	 has_many :products,dependent: :destroy #xoa luon du lieu ben khoa ngoai
 	 before_save {self.email = email.downcase}
      validates :username, presence: true,
      uniqueness: { case_sensitive: false },
