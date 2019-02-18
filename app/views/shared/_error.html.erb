@@ -1,5 +1,5 @@
-<% if @user.errors.any? %>
-<%= @user.errors.any? %><!--  Kiem tra truoc khi insert vao db , ket qua tra ve true neu co loi -->
+<% if obj.errors.any? %>
+<%= obj.errors.any? %><!--  Kiem tra truoc khi insert vao db , ket qua tra ve true neu co loi -->
 <div class="row">
 	<div class="col-xs-8 col-xs-offset-2">
 		<div class="panel panel-danger">
@@ -9,7 +9,7 @@
 				prohibited this User from being saved: </h2>
 				<div class="panel-body">
 					<ul>
-						<% @user.errors.full_messages.each do |msg| %> <!-- Duyet qua cac loi trong qua trinh tao user gap phai -->
+						<% obj.errors.full_messages.each do |msg| %> <!-- Duyet qua cac loi trong qua trinh tao user gap phai -->
 						<li>
 							<%= msg %>
 						</li>

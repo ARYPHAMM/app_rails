@@ -19,6 +19,9 @@
 				last updated: <%= time_ago_in_words(p.updated_at)
 				%> ago</small>
 			</div>
+			<% if p.categories.any? %>
+			<p>Categories: <%= render p.categories %></p>
+			<% end %>
 			<% if logged_in? && (current_user == p.user || current_user.admin?) %>
 			<div class="user-actions">
 				<%= link_to "Edit this product", edit_product_path(p), class: "btn btn-xs btn-primary" %>
